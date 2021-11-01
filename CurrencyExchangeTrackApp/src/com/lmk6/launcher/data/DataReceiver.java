@@ -41,7 +41,7 @@ public class DataReceiver {
         urlM = "latest";
     }
 
-    public void getHistoricalExchangeRate(String from_date, String to_date) {
+    public void getHistoricalExchangeRate(String from_date, String to_date) { //yyyy-mm-dd
         urlM = "historical?apikey=" + apikey + "&base_currency=" + currency + "&date_from=" + from_date + "&date_to=" + to_date;
         requestExchangeRates();
     }
