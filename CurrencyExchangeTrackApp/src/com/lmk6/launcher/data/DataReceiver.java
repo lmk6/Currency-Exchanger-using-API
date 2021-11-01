@@ -55,6 +55,7 @@ public class DataReceiver {
             connection.setRequestMethod("GET");
             int responseCode = connection.getResponseCode();
 
+
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 StringBuffer response = new StringBuffer();
