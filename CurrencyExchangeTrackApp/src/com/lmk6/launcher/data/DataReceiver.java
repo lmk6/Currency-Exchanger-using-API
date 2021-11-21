@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
+import static com.lmk6.launcher.data.ConstValues.*;
 
 public class DataReceiver {
 
@@ -14,7 +15,6 @@ public class DataReceiver {
     private String apikey = "ce873770-34da-11ec-aba6-bb2ddf8ec78b";
     private JSONParser jsonParser;
     private Map dataMap;
-    String filename = "currencyExchangeRates.json";
 
     public DataReceiver() {
         currency = "USD";
@@ -33,7 +33,7 @@ public class DataReceiver {
     public void getSpecificExchangeRate() {
         urlM = "latest?apikey=" + apikey + "&base_currency=" + currency;
         requestExchangeRates();
-        dataMap = jsonParser.getRatesInMap(filename);
+        dataMap = jsonParser.getRatesInMap(FILENAME);
         dataMap.forEach((k,v) -> System.out.println("Currency: " + k + ", value = " + v));
     }
 
@@ -58,12 +58,12 @@ public class DataReceiver {
 
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuffer response = new StringBuffer();
+                StringBuilder response = new StringBuilder();
                 while ((readLine = in.readLine()) != null) {
                     response.append(readLine);
                 }
                 in.close();
-                File myObj = new File(filename);
+                File myObj = new File(FILENAME);
                 Writer writer = new FileWriter(myObj);
                 BufferedWriter bufferedWriter = new BufferedWriter(writer);
                 //System.out.println(response.toString());
