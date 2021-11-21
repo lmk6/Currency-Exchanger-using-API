@@ -4,20 +4,28 @@ import java.util.Currency;
 
 public class CurrencyClass {
     private final String code;
-    private final float value;
-    private final String name;
+    private double value;
+    private String name;
 
     public CurrencyClass(Object code, Object value) {
         this.code = (String) code;
-        this.value = (float) value;
-        name = Currency.getInstance(this.code).getDisplayName();
+        try {
+            this.value = (double) value;
+        } catch (ClassCastException e) {
+            this.value = (double) (Integer) value;
+        }
+        try {
+            name = Currency.getInstance(this.code).getDisplayName();
+        } catch (IllegalArgumentException e) {
+            name = (String) code;
+        }
     }
 
     public String getCode() {
         return code;
     }
 
-    public float getValue() {
+    public double getValue() {
         return value;
     }
 
