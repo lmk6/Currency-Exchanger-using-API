@@ -66,7 +66,7 @@ public class DataReceiver {
                 File myObj = new File(filename);
                 Writer writer = new FileWriter(myObj);
                 BufferedWriter bufferedWriter = new BufferedWriter(writer);
-                System.out.println(response.toString());
+                //System.out.println(response.toString());
                 JSONObject result = new JSONObject(response.toString());
                 bufferedWriter.write(result.toString(2));
                 bufferedWriter.close();
