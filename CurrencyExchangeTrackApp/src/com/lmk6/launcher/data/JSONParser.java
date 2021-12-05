@@ -12,13 +12,12 @@ public class JSONParser {
 
     }
 
-    public Map getRatesInMap(String filename) {
+    public Map<String, Double> getRatesInMap(String filename) {
         try {
             File input = new File(filename);
-            Map<String, Object> mapFromJson = new ObjectMapper().readValue(input, new TypeReference<Map<String, Object>>() {
+            Map<String, Object> mapFromJson = new ObjectMapper().readValue(input, new TypeReference<Map<String, Double>>() {
             });
-            Map<String, Object> ratesMap = (Map<String, Object>) mapFromJson.get("data");
-            return ratesMap;
+            return (Map<String, Double>) mapFromJson.get("data");
         } catch (IOException e) {
             e.printStackTrace();
         }

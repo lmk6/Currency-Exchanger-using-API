@@ -12,16 +12,11 @@ public class CurrenciesList {
         makeCurrencyList();
     }
 
-    private void makeCurrencyList() {
+    private void makeCurrencyList() {                       //Based on data available in the file
         JSONParser jsonParser = new JSONParser();
-        Map dataMap = jsonParser.getRatesInMap(FILENAME);
+        Map<String, ?> dataMap = jsonParser.getRatesInMap(FILENAME);
         dataMap.forEach((k, v) -> currencies.add(new CurrencyClass(k, v)));
-        Collections.sort(currencies, new Comparator<CurrencyClass>() {
-            @Override
-            public int compare(CurrencyClass o1, CurrencyClass o2) {
-                return o1.getCode().compareTo(o2.getCode());
-            }
-        });
+        currencies.sort(Comparator.comparing(CurrencyClass::getCode));
     }
 
     public ArrayList<CurrencyClass> getCurrencyList() {
